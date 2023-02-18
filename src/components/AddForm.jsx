@@ -17,7 +17,8 @@ const AddForm = ({addAll, setAddAll}) => {
               <h4>Task: {item.task} Type: {item.type}</h4>
               <button className='btn btn-primary me-md-2'><AiFillEdit />
               Edit</button>
-              <button onClick={() => DeleteTask(item.type)} className='btn btn-secondary'><BsFillEraserFill />
+              <button onClick={() => DeleteTask(item.type)} className='btn btn-secondary'>
+                <BsFillEraserFill />
               Erase</button>                            
             </li>
         )) }

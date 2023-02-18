@@ -2,6 +2,10 @@ import React from 'react'
 
 const AddTask = (props) => {
 
+  const handleInputTask = (event) => {
+    props.setTask(event.target.value)
+  }  
+
   return (
     
       <div className='row align-items-start'>
@@ -9,14 +13,10 @@ const AddTask = (props) => {
       <div className='col'>
         <h2>Tasks' list</h2>
           <form className='form-group'>            
-          <input onChange={(event) => {props.setTask(event.target.value)}} 
-          type="text" className='placeholder bg-info' placeholder="To add task..." />            
+          <input onChange={handleInputTask} 
+          type="text" className='placeholder bg-info' autoFocus placeholder="To add task..."  />            
           </form>
-
-      <div>
-        <p>Tasks</p>   
-    
-      </div>
+        <p>Tasks</p>       
 
       </div>
 

@@ -32,8 +32,8 @@ const Usuarios = () => {
         setFallo(false)
     }
     
-    const BorrarUsuario = (choc) => {
-        const filtro = lista.filter(item => item.nombre !== choc)
+    const BorrarUsuario = (borrarItem) => {
+        const filtro = lista.filter(item => item.nombre !== borrarItem)
         setLista(filtro)
               
     }
@@ -64,8 +64,10 @@ const Usuarios = () => {
                     lista.map(i => (
                         <li className='list-group-item'>
                             Se llama {i.nombre} con {i.edad} años
-                            <button onClick={() => PrimeraEdicion(i)} className='btn btn-sm btn-primary float-right'>EDITAR</button>
-                            <button onClick={() => BorrarUsuario(i.nombre)} className='btn btn-sm btn-primary float-right'>BORRAR</button>
+                            <button onClick={() => PrimeraEdicion(i)} 
+                            className='btn btn-sm btn-primary float-right'>EDITAR</button>
+                            <button onClick={() => BorrarUsuario(i.nombre)} 
+                            className='btn btn-sm btn-primary float-right'>BORRAR</button>
                         </li>
                     ))
                 }
@@ -84,9 +86,11 @@ const Usuarios = () => {
             }
             <form className='form-group'>
                 <input onChange={(e) => {setNombre(e.target.value)}} 
-                className='form-control mb-2' type="text" placeholder="Introduce nombre" value={nombre} />
+                className='form-control mb-2' type="text" placeholder="Introduce nombre" 
+                value={nombre} />
                 <input onChange={(e) => {setEdad(e.target.value)}} 
-                className='form-control mb-2' type="text" placeholder="Introduce edad" value={edad} />
+                className='form-control mb-2' type="text" placeholder="Introduce edad" 
+                value={edad} />
                 {
                     modoEdicion ? (
                         <button onClick={(e) => {EdicionFinal(e)}} 
