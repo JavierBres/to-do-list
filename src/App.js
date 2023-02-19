@@ -1,51 +1,72 @@
 import './App.css';
 import { useState } from 'react';
-import AddForm from './components/AddForm';
 import AddTask from './components/AddTask';
-import BtnForm from './components/BtnForm';
-import Usuarios from './components/Usuarios';
+import AddForm from './components/AddForm';
 
 function App() {
-
-  const [task, setTask] = useState("")
-  const [type, setType] = useState("")    
-  const [addAll, setAddAll] = useState([])
   
-  const AddAll = (event) => {
-    event.preventDefault()
-    if(task === '' || type === '') {
-      alert("Write a task")
-      return
+    const [product, setProduct] = useState("")
+    const [unit, setUnit] = useState("")
+    const [list, setList] = useState([])
+    const [modeEdition, setModeEdition] = useState(false)
+
+    const AddProduct = (e) => {
+        e.preventDefault()
+        if(product.length === 0 || unit.length === 0) {
+            alert("Añade un producto y unidad/es")            
+            return
+        }          
+      
+          const prod = {
+            id: Date.now(),
+            product: product,
+            unit: unit,
+            isdone: false
+          }
+          setList([...list, prod])
+          setProduct("")
+          setUnit("")
+    }
+    
+    const DeleteList = (deleteItem) => {
+        const filtered = list.filter(item => item.product !== deleteItem)
+        setList(filtered)              
+    }
+    
+    const FirstEdition = (obj) => {
+        setProduct(obj.product)
+        setUnit(obj.unit)
+        setModeEdition(true)
     }
 
-    const all = {
-      id: Date.now(),
-      task: task,
-      type: type,
-      isdone: true
+    const FinalEdition = (e) => {
+        e.preventDefault()
+        const edited = list.map(item => item.product === product ? {product, unit} : item)        
+        setList(edited)
+        setModeEdition(false)
+        setProduct("")
+        setUnit("")
     }
-    setAddAll([...addAll, all])
-    setTask("")
-    setType("")
-  }  
 
   return (
-    <div className='container text-center'>
-
-      <h1>TO-DO LIST</h1>
-      <br />
+    <div className='container text-center bg-success' >      
         
-        <AddTask setTask={setTask} setType={setType} />
-        
-        <BtnForm AddAll={AddAll} />
-
-        <hr />
-
-        <AddForm addAll={addAll} setAddAll={setAddAll}
-        setTask={setTask} setType={setType} />    
-
-        <Usuarios />    
+           
+      <div className='row'>
+        <h1>LISTA DE LA COMPRA</h1> 
       
+        <div className='col-12 col-sm-4'>
+        <AddTask setProduct={setProduct} setUnit={setUnit} AddProduct={AddProduct} 
+        FinalEdition={FinalEdition} modeEdition={modeEdition} product={product} unit={unit} 
+        />
+        </div>
+
+        <div className='col-12 col-sm-8'>
+        <AddForm DeleteList={DeleteList} FirstEdition={FirstEdition} list={list}
+        />
+        </div>
+
+      </div>    
     </div>
   )
 }

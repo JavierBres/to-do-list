@@ -1,34 +1,31 @@
 import React from 'react'
 
 const AddTask = (props) => {
-
-  const handleInputTask = (event) => {
-    props.setTask(event.target.value)
-  }  
-
-  return (
     
-      <div className='row align-items-start'>
-
-      <div className='col'>
-        <h2>Tasks' list</h2>
-          <form className='form-group'>            
-          <input onChange={handleInputTask} 
-          type="text" className='placeholder bg-info' autoFocus placeholder="To add task..."  />            
-          </form>
-        <p>Tasks</p>       
-
-      </div>
-
-      <div className='col'>
-        <h2>List of task's type</h2>
-          <form className='form-group'>            
-          <input onChange={(event) => {props.setType(event.target.value)}} 
-          type="text" className='placeholder bg-info' placeholder="To add type's task...." />
-          </form>
-        <p>Types</p>
-      </div>      
+  return (
+    <div>
+            <h2>Formulario de lista de la compra</h2>
+            <hr />
             
+            <form className='form-group'>
+                <input onChange={(e) => {props.setProduct(e.target.value)}} 
+                className='form-control mb-2 bg-warning' type="text" autoFocus placeholder="Introduce producto" 
+                value={props.product} />
+                <input onChange={(e) => {props.setUnit(e.target.value)}} 
+                className='form-control mb-2 bg-warning' type="number" placeholder="Introduce unidad" 
+                value={props.unit} />
+                {
+                    props.modeEdition ? (
+                        <button  onClick={(e) => {props.FinalEdition(e)}} 
+                        className='btn btn-info btn-block' type="submit">EDITAR</button>
+                    ) :
+                    (
+                        <button onClick={(e) => {props.AddProduct(e)}} 
+                        className='btn btn-info btn-block' type="submit">AGREGAR</button>
+                    )
+                }                
+
+            </form>
     </div>
   )
 }

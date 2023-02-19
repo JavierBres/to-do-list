@@ -56,7 +56,7 @@ const Usuarios = () => {
   return (
     <div className='row'>
 
-        <div className='col-5'>
+        <div className='col-6'>
             <h2>Listado de usuarios</h2>
             <hr />
             <ul className='list-group'>
@@ -64,7 +64,7 @@ const Usuarios = () => {
                     lista.map(i => (
                         <li className='list-group-item'>
                             Se llama {i.nombre} con {i.edad} años
-                            <button onClick={() => PrimeraEdicion(i)} 
+                            <button onClick={() => PrimeraEdicion(i)}
                             className='btn btn-sm btn-primary float-right'>EDITAR</button>
                             <button onClick={() => BorrarUsuario(i.nombre)} 
                             className='btn btn-sm btn-primary float-right'>BORRAR</button>
@@ -73,7 +73,7 @@ const Usuarios = () => {
                 }
             </ul>
         </div>
-        <div className='col-7'>
+        <div className='col-6'>
             <h2>Formulario de usuarios</h2>
             <hr />
             {

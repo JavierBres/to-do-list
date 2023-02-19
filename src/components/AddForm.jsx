@@ -2,29 +2,28 @@ import React from 'react'
 import { BsFillEraserFill } from "react-icons/bs";
 import { AiFillEdit } from "react-icons/ai";
 
-const AddForm = ({addAll, setAddAll}) => {
-
-  const DeleteTask = (delet) => {
-    const filtered = addAll.filter(item => item.type !== delet)
-    setAddAll(filtered)
-  }
-
+const AddForm = ({list, FirstEdition, DeleteList}) => {
+    
   return (
     <div>
-      <ul className='list-group'>
-        { addAll.map((item) => (
-            <li key={item.id} className='list-group-item'>
-              <h4>Task: {item.task} Type: {item.type}</h4>
-              <button className='btn btn-primary me-md-2'><AiFillEdit />
-              Edit</button>
-              <button onClick={() => DeleteTask(item.type)} className='btn btn-secondary'>
-                <BsFillEraserFill />
-              Erase</button>                            
-            </li>
-        )) }
-      </ul>
+        <h2>Listado de productos</h2>
+        <hr />
+        <ul className='list-group'>
+            {
+                list.map(i => (
+                    <li key={i.id} className='list-group-item bg-info'>
+                        {i.product}  {i.unit} unidades
+                        <button onClick={() => FirstEdition(i)} 
+                        className='btn btn-sm btn-primary float-right me-md-2'><AiFillEdit />
+                        </button>
+                        <button onClick={() => DeleteList(i.product)} 
+                        className='btn btn-sm btn-primary float-right'><BsFillEraserFill />
+                        </button>
+                    </li>
+                ))
+            }
+        </ul>
     </div>
   )
 }
-
 export default AddForm
